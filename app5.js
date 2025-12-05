@@ -21,7 +21,7 @@ let station2 = [
   { id:7, code:"JE18", name:"蘇我駅", change:"内房線，外房線", passengers:31328, distance:43.0 },
 ];
 let olympiaChampion =[
-  { id:1, year:"1965~1966" , name:"ラリー・スコット" , from:"アメリカ合衆国" , height: "170cm", features:"" },
+  { id:1, year:"1965,1966" , name:"ラリー・スコット" , from:"アメリカ合衆国" , height: "170cm", features:"" },
   { id:2, year:"1967~1969" , name:"セルジオ・オリバ" , from:"キューバ", height:"175cm" , features:"" },
   { id:3, year:"1970~1975,1980" , name: "アーノルド・シュワルツネッガー", from:"オーストリア" , height:"188cm" , features:"" },
   { id:4, year:"1976,1981" , name:"フランコ・コロンブ" , from:"イタリア" , height:"165cm" , features:"" },
