@@ -42,6 +42,52 @@ let olympiaChampion =[
   { id:19, year:"2024" , name:"サムソン・ダウダ" , from:"ナイジェリア" , height:"180cm" , explanation:"" },
 
 ];
+let nijisanji_seeds =[
+  {id:1, name:"ドーラ(どーら)",year:"2018/06/03~",species:"ファイヤードレイク",birthday:"8/19"},
+  {id:2, name:"海夜叉神(うみやしゃのかみ)",year:"2018/06/03~2019/04/09",species:"神",birthday:"8/19"},
+  {id:3, name:"名伽尾アズマ(なかおあずま)",year:"2018/06/03~2019/05/31",species:"人間",birthday:"8/19"},
+  {id:4, name:"出雲霞(いずもかすみ)",year:"2018/06/03~2020/10/31",species:"人工知能",birthday:"8/19"},
+  {id:5, name:"轟京子(とどろききょうこ)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
+  {id:6, name:"シスター・クレア(しすたーくれあ)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
+  {id:7, name:"花畑チャイカ(はなばたけちゃいか)",year:"2018/06/03~",species:"エルフ",birthday:"8/19"},
+  {id:8, name:"社築(やしろきずく)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
+  {id:9, name:"安土桃(あづちもも)",year:"2018/06/03~2024/1/31",species:"人間",birthday:"8/19"},
+  {id:10, name:"鈴木勝(すずきまさる)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
+  {id:11, name:"緑仙 (りゅーしぇん)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
+  {id:12, name:"卯月コウ(うづきこう)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
+  {id:13, name:"八朔ゆず(はっさくゆず)",year:"2018/06/03~2019/05/07",species:"人間",birthday:"8/19"}
+];
+let ac =[
+  {id:1, ac_name:"ロックスミス",name:"V.I フロイト",rank:"S/1",affiliate:"アーキバス強化人間部隊"},
+  {id:2, ac_name:"ライガーテイル",name:"G1 ミシガン",rank:"S/2",affiliate:"ベイラムグループ専属AC部隊"},
+  {id:3, ac_name:"アスタークラウン",name:"キング",rank:"S/3",affiliate:"独立傭兵"},
+  {id:4, ac_name:"アストヒク",name:"サム・ドルマヤン",rank:"A/4",affiliate:"ルビコン解放戦線"},
+  {id:5, ac_name:"アンバーオックス",name:"シャルトルーズ",rank:"A/5",affiliate:"独立傭兵"},
+  {id:6, ac_name:"オープンフェイス",name:"V.II スネイル",rank:"A/6",affiliate:"アーキバスグループ強化人間部隊"},
+  {id:7, ac_name:"ディープダウン",name:"G2 ナイル",rank:"A/7",affiliate:"ベイラムグループ専属AC部隊"},
+  {id:8, ac_name:"ミルクトゥース",name:"オーネスト・ブルートゥ",rank:"B/8",affiliate:"ジャンカー・コヨーテス"},
+  {id:9, ac_name:"スティール・ヘイズ ",name:"V.IV ラスティ",rank:"B/9",affiliate:"アーキバスグループ強化人間部隊"},
+  {id:10, ac_name:"デッドスレッド",name:"コールドコール",rank:"B/10",affiliate:"独立傭兵"},
+  {id:11, ac_name:"フルコース",name:"シンダー・カーラ",rank:"B/11",affiliate:"RaD"},
+  {id:12, ac_name:"バレンフラワー",name:"V.III オキーフ",rank:"B/12",affiliate:"アーキバスグループ強化人間部隊"},
+  {id:13, ac_name:"ツバサ",name:"ミドル・フラットウェル",rank:"C/13",affiliate:"ルビコン解放戦線"},
+  {id:14, ac_name:"サーカス",name:"チャティ・スティック",rank:"C/14",affiliate:"RaD"},
+  {id:15, ac_name:"エンタングル",name:"スッラ",rank:"C/15",affiliate:"独立傭兵"},
+  {id:16, ac_name:"デュアルネイチャー",name:"V.VIII ペイター",rank:"C/16",affiliate:"アーキバスグループ強化人間部隊"},
+  {id:17, ac_name:"キャノンヘッド",name:"G4 ヴォルタ",rank:"C/17",affiliate:"ベイラムグループ専属AC部隊"},
+  {id:18, ac_name:"シノビ",name:"六文銭",rank:"D/18",affiliate:"独立傭兵"},
+  {id:19, ac_name:"ヘッドブリンガー",name:"G5 イグアス",rank:"D/19",affiliate:"ベイラムグループ専属AC部隊"},
+  {id:20, ac_name:"リコンフィグ",name:"V.V ホーキンス",rank:"D/20",affiliate:"アーキバスグループ強化人間部隊"},
+  {id:21, ac_name:"キャンドルリング",name:"リング・フレディ",rank:"D/21",affiliate:"ルビコン解放戦線"},
+  {id:22, ac_name:"鯉龍",name:"G3 五花海",rank:"D/22",affiliate:"ベイラムグループ専属AC部隊"},
+  {id:23, ac_name:"ガイダンス",name:"V.VII スウィンバーン",rank:"E/23",affiliate:"アーキバスグループ強化人間部隊"},
+  {id:24, ac_name:"ユエユー",name:"リトル・ツィイー",rank:"E/24",affiliate:"ルビコン解放戦線"},
+  {id:25, ac_name:"インフェクション",name:"V.VI メーテルリンク",rank:"E/25",affiliate:"アーキバスグループ強化人間部隊"},
+  {id:26, ac_name:"ビタープロミス",name:"ノーザーク",rank:"E/26",affiliate:"独立傭兵"},
+  {id:27, ac_name:"ハーミット",name:"G6 レッド",rank:"F/27",affiliate:"ベイラムグループ専属AC部隊"},
+  {id:28, ac_name:"バーンピカクス",name:"インデックス・ダナム",rank:"F/28",affiliate:"ルビコン解放戦線"},
+  {id:29, ac_name:"マッドスタンプ",name:"インビンシブル・ラミー",rank:"F/29",affiliate:"RaD"},
+];
 app.get("/hello1", (req, res) => {
   const message1 = "Hello world";
   const message2 = "Bon jour";
@@ -155,19 +201,19 @@ app.get("/keiyo2", (req, res)=>{
 app.get("/keiyo2/create", (req, res) => {
   res.redirect('/public/keiyo2_new.html');
 });
-app.get("/keiyo_add", (req, res) => {
-  let id = req.query.id;
-  let code = req.query.code;
-  let name = req.query.name;
-  let newdata = { id: id, code: code, name: name };
-  station.push( newdata );
-});
 // Read
 app.get("/keiyo2/:number", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
   const number = req.params.number;
   const detail = station2[ number ];
   res.render('keiyo2_detail', {data: detail} );
+});
+app.get("/keiyo_add", (req, res) => {
+  let id = req.query.id;
+  let code = req.query.code;
+  let name = req.query.name;
+  let newdata = { id: id, code: code, name: name };
+  station.push( newdata );
 });
 // Delete
 app.get("/keiyo2/delete/:number", (req, res) => {
@@ -208,6 +254,69 @@ app.post("/keiyo2/update/:number", (req, res) => {
   station2[req.params.number].distance = req.body.distance;
   console.log( station2 );
   res.redirect('/keiyo2' );
+});
+
+// 一覧
+app.get("/nijisanji", (req, res)=>{
+  res.render('nijisanji', { data:nijisanji_seeds} );
+});
+// Create
+app.get("/nijisanji/create", (req, res) => {
+  res.redirect('/public/nijisanji.html');
+});
+// Read
+app.get("/nijisanji/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = station2[ number ];
+  res.render('keiyo2_detail', {data: detail} );
+});
+app.get("/nijisanji_add", (req, res) => {
+  let id = req.query.id;
+  let code = req.query.code;
+  let name = req.query.name;
+  let newdata = { id: id, code: code, name: name };
+  station.push( newdata );
+});
+// Delete
+app.get("/nijisanji/delete/:number", (req, res) => {
+  // 本来は削除の確認ページを表示する
+  // 本来は削除する番号が存在するか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  nijisanji_seeds.splice( req.params.number, 1 );
+  res.redirect('/nijisanji' );
+});
+// Create
+app.post("/nijisanji", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const id = station2.length + 1;
+  const code = req.body.code;
+  const name = req.body.name;
+  const change = req.body.change;
+  const passengers = req.body.passengers;
+  const distance = req.body.distance;
+  station2.push( { id: id, code: code, name: name, change: change, passengers: passengers, distance: distance } );
+  console.log( station2 );
+  res.render('nijisanji', {data: nijisanji_seeds} );
+});
+// Edit
+app.get("/nijisanji/edit/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = nijisanji_seeds[ number ];
+  res.render('nijisanji_edit', {id: number, data: detail} );
+});
+// Update
+app.post("/nijisanji/update/:number", (req, res) => {
+  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  nijisanji_seeds[req.params.number].code = req.body.code;
+  nijisanji_seeds[req.params.number].name = req.body.name;
+  nijisanji_seeds[req.params.number].change = req.body.change;
+  nijisanji_seeds[req.params.number].passengers = req.body.passengers;
+  nijisanji_seeds[req.params.number].distance = req.body.distance;
+  console.log( nijisanji_seeds );
+  res.redirect('/nijisanji' );
 });
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
 
