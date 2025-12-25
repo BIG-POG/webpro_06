@@ -3,6 +3,7 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
+app.use(express.urlencoded({extended: true}));
 let station = [
   { id:1, code:"JE01", name:"東京駅"},
   { id:2, code:"JE07", name:"舞浜駅"},
@@ -20,26 +21,26 @@ let station2 = [
   { id:6, code:"JE17", name:"千葉みなと駅", change:"千葉都市モノレール", passengers:16602, distance:39.0 },
   { id:7, code:"JE18", name:"蘇我駅", change:"内房線，外房線", passengers:31328, distance:43.0 },
 ];
-let olympiaChampion =[
-  { id:1, year:"1965,1966" , name:"ラリー・スコット" , from:"アメリカ合衆国" , height: "170cm", explanation:"" },
-  { id:2, year:"1967~1969" , name:"セルジオ・オリバ" , from:"キューバ", height:"175cm" , explanation:"" },
-  { id:3, year:"1970~1975,1980" , name: "アーノルド・シュワルツネッガー", from:"オーストリア" , height:"188cm" , explanation:"" },
-  { id:4, year:"1976,1981" , name:"フランコ・コロンブ" , from:"イタリア" , height:"165cm" , explanation:"" },
-  { id:5, year:"1977~1979" , name:"フランク・ゼーン" , from:"アメリカ合衆国" , height:"175cm" , explanation:"" },
-  { id:6, year:"1982" , name:"クリス・ディッカーソン" , from:"アメリカ合衆国" , height:"168cm" , explanation:"" },
-  { id:7, year:"1983" , name:"サミアー・バヌー" , from:"レバノン" , height:"170cm" , explanation:"" },
-  { id:8, year:"1984~1991" , name:"リー・ヘイニー" , from:"アメリカ合衆国" , height:"181cm" , explanation:"" },
-  { id:9, year:"1992~1997" , name:"ドリアン・イェーツ" , from:"イギリス" , height:"177cm" , explanation:"" },
-  { id:10, year:"1998~2005" , name:"ロニー・コールマン" , from:"アメリカ合衆国" , height:"180cm" , explanation:"" },
-  { id:11, year:"2006,2007,2009,2010" , name:"ジェイ・カトラー" , from:"アメリカ合衆国" , height:"175cm" , explanation:"" },
-  { id:12, year:"2008" , name:"デキスタージャクソン" , from:"アメリカ合衆国" , height:"169cm" , explanation:"" },
-  { id:13, year:"2011~2017" , name:"フィル・ヒース" , from:"アメリカ合衆国" , height:"175cm" , explanation:"" },
-  { id:14, year:"2018" , name:"ショーン・ローデン" , from:"ジャマイカ" , height:"178cm" , explanation:"" },
-  { id:15, year:"2019" , name:"ブランドン・カリー" , from:"アメリカ合衆国" , height:"173cm" , explanation:"" },
-  { id:16, year:"2020,2021" , name:"マンドゥ・エルスビエイ(ビッグ・ラミー)" , from:"エジプト" , height:"175cm" , explanation:"" },
-  { id:17, year:"2022" , name:"ハディー・チョーパン" , from:"イラン" , height:"169cm" , explanation:"" },
-  { id:18, year:"2023,2025" , name:"デレク・ランスフォード" , from:"アメリカ合衆国" , height:"168cm" , explanation:"" },
-  { id:19, year:"2024" , name:"サムソン・ダウダ" , from:"ナイジェリア" , height:"180cm" , explanation:"" },
+let OlympiaChampion =[
+  { id:1, year:"1965,1966" , name:"ラリー・スコット" , from:"アメリカ合衆国" , height: "170cm", strengths:"恵まれた長い上腕二頭筋" },
+  { id:2, year:"1967~1969" , name:"セルジオ・オリバ" , from:"キューバ", height:"175cm" , strengths:"細いウエストと長く太い手足" },
+  { id:3, year:"1970~1975,1980" , name: "アーノルド・シュワルツネッガー", from:"オーストリア" , height:"188cm" , strengths:"高い身長と当時では群を抜いた筋肉量" },
+  { id:4, year:"1976,1981" , name:"フランコ・コロンブ" , from:"イタリア" , height:"165cm" , strengths:"恵まれた骨格ととても絞れたコンディション" },
+  { id:5, year:"1977~1979" , name:"フランク・ゼーン" , from:"アメリカ合衆国" , height:"175cm" , strengths:"彫刻のような優れたプロポーションとカット" },
+  { id:6, year:"1982" , name:"クリス・ディッカーソン" , from:"アメリカ合衆国" , height:"168cm" , strengths:"バランスの取れたプロポーションとポージングの上手さ" },
+  { id:7, year:"1983" , name:"サミアー・バヌー" , from:"レバノン" , height:"170cm" , strengths:"上半身の厚さと背中の立体感，カーフの大きさ" },
+  { id:8, year:"1984~1991" , name:"リー・ヘイニー" , from:"アメリカ合衆国" , height:"181cm" , strengths:"圧倒的な上半身の大きさ" },
+  { id:9, year:"1992~1997" , name:"ドリアン・イェーツ" , from:"イギリス" , height:"177cm" , strengths:"正面からも見える巨大な広背筋などの背中の筋肉" },
+  { id:10, year:"1998~2005" , name:"ロニー・コールマン" , from:"アメリカ合衆国" , height:"180cm" , strengths:"恵まれた骨格に搭載された圧倒的な筋肉量" },
+  { id:11, year:"2006,2007,2009,2010" , name:"ジェイ・カトラー" , from:"アメリカ合衆国" , height:"175cm" , strengths:"引き締まった体と全身の凹凸感" },
+  { id:12, year:"2008" , name:"デキスタージャクソン" , from:"アメリカ合衆国" , height:"169cm" , strengths:"左右対称で弱点の少ない体と肩の丸み" },
+  { id:13, year:"2011~2017" , name:"フィル・ヒース" , from:"アメリカ合衆国" , height:"175cm" , strengths:"優れたコンディションと左右対称さ全身の丸み" },
+  { id:14, year:"2018" , name:"ショーン・ローデン" , from:"ジャマイカ" , height:"178cm" , strengths:"引き締まったウエストと美しく並んだ腹筋" },
+  { id:15, year:"2019" , name:"ブランドン・カリー" , from:"アメリカ合衆国" , height:"173cm" , strengths:"引き締まったウエストと優れた背中" },
+  { id:16, year:"2020,2021" , name:"マンドゥ・エルスビエイ(ビッグ・ラミー)" , from:"エジプト" , height:"175cm" , strengths:"圧倒的な筋肉量と太い大腿四頭筋" },
+  { id:17, year:"2022" , name:"ハディー・チョーパン" , from:"イラン" , height:"169cm" , strengths:"低い身長に積み込まれた筋肉" },
+  { id:18, year:"2023,2025" , name:"デレク・ランスフォード" , from:"アメリカ合衆国" , height:"168cm" , strengths:"引き締まったウエストと背中の立体感" },
+  { id:19, year:"2024" , name:"サムソン・ダウダ" , from:"ナイジェリア" , height:"180cm" , strengths:"長い手足についた丸々とした筋肉" },
 
 ];
 let nijisanji_seeds =[
@@ -57,7 +58,7 @@ let nijisanji_seeds =[
   {id:12, name:"卯月コウ(うづきこう)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
   {id:13, name:"八朔ゆず(はっさくゆず)",year:"2018/06/03~2019/05/07",species:"人間",birthday:"8/19"}
 ];
-let ac =[
+let AC =[
   {id:1, ac_name:"ロックスミス",name:"V.I フロイト",rank:"S/1",affiliate:"アーキバス強化人間部隊"},
   {id:2, ac_name:"ライガーテイル",name:"G1 ミシガン",rank:"S/2",affiliate:"ベイラムグループ専属AC部隊"},
   {id:3, ac_name:"アスタークラウン",name:"キング",rank:"S/3",affiliate:"独立傭兵"},
@@ -247,6 +248,7 @@ app.get("/keiyo2/edit/:number", (req, res) => {
 app.post("/keiyo2/update/:number", (req, res) => {
   // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
   // 本来ならここにDBとのやり取りが入る
+  station2[req.params.number].id = req.body.id;
   station2[req.params.number].code = req.body.code;
   station2[req.params.number].name = req.body.name;
   station2[req.params.number].change = req.body.change;
@@ -262,21 +264,14 @@ app.get("/nijisanji", (req, res)=>{
 });
 // Create
 app.get("/nijisanji/create", (req, res) => {
-  res.redirect('/public/nijisanji.html');
+  res.redirect('/public/nijisanji_create.html');
 });
 // Read
 app.get("/nijisanji/:number", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
   const number = req.params.number;
-  const detail = station2[ number ];
-  res.render('keiyo2_detail', {data: detail} );
-});
-app.get("/nijisanji_add", (req, res) => {
-  let id = req.query.id;
-  let code = req.query.code;
-  let name = req.query.name;
-  let newdata = { id: id, code: code, name: name };
-  station.push( newdata );
+  const detail = nijisanji_seeds[ number ];
+  res.render('nijisanji_detail', {data: detail} );
 });
 // Delete
 app.get("/nijisanji/delete/:number", (req, res) => {
@@ -289,14 +284,13 @@ app.get("/nijisanji/delete/:number", (req, res) => {
 // Create
 app.post("/nijisanji", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
-  const id = station2.length + 1;
-  const code = req.body.code;
+  const id = nijisanji_seeds.length + 1;
   const name = req.body.name;
-  const change = req.body.change;
-  const passengers = req.body.passengers;
-  const distance = req.body.distance;
-  station2.push( { id: id, code: code, name: name, change: change, passengers: passengers, distance: distance } );
-  console.log( station2 );
+  const year = req.body.year;
+  const species = req.body.species;
+  const birthday = req.body.birthday;
+  nijisanji_seeds.push( { id: id, name: name, year: year, species: species, birthday: birthday } );
+  console.log( nijisanji_seeds );
   res.render('nijisanji', {data: nijisanji_seeds} );
 });
 // Edit
@@ -310,13 +304,122 @@ app.get("/nijisanji/edit/:number", (req, res) => {
 app.post("/nijisanji/update/:number", (req, res) => {
   // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
   // 本来ならここにDBとのやり取りが入る
-  nijisanji_seeds[req.params.number].code = req.body.code;
   nijisanji_seeds[req.params.number].name = req.body.name;
-  nijisanji_seeds[req.params.number].change = req.body.change;
-  nijisanji_seeds[req.params.number].passengers = req.body.passengers;
-  nijisanji_seeds[req.params.number].distance = req.body.distance;
+  nijisanji_seeds[req.params.number].year = req.body.change;
+  nijisanji_seeds[req.params.number].species = req.body.species;
+  nijisanji_seeds[req.params.number].birthday = req.body.birthday;
   console.log( nijisanji_seeds );
   res.redirect('/nijisanji' );
+});
+// 一覧
+app.get("/Olympia", (req, res)=>{
+  res.render('Olympia', { data:OlympiaChampion} );
+});
+// Create
+app.get("/Olympia/create", (req, res) => {
+  res.redirect('/public/Olympia_create.html');
+});
+// Read
+app.get("/Olympia/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = OlympiaChampion[ number ];
+  res.render('Olympia_detail', {data: detail} );
+});
+// Delete
+app.get("/Olympia/delete/:number", (req, res) => {
+  // 本来は削除の確認ページを表示する
+  // 本来は削除する番号が存在するか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  OlympiaChampion.splice( req.params.number, 1 );
+  res.redirect('/Olympia' );
+});
+// Create
+app.post("/Olympia", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const id = OlympiaChampion.length + 1;
+  const year = req.body.year;
+  const name = req.body.name;
+  const from = req.body.from;
+  const height = req.body.height;
+  const strengths = req.body.strengths;
+  OlympiaChampion.push( { id: id,year: year, name: name, from: from, height: height,strengths: strengths  } );
+  console.log( OlympiaChampion );
+  res.render('Olympia', {data: OlympiaChampion} );
+});
+// Edit
+app.get("/Olympia/edit/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = OlympiaChampion[ number ];
+  res.render('Olympia_edit', {id: number, data: detail} );
+});
+// Update
+app.post("/Olympia/update/:number", (req, res) => {
+  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  OlympiaChampion[req.params.number].year = req.body.change;
+  OlympiaChampion[req.params.number].name = req.body.name;
+  OlympiaChampion[req.params.number].from = req.body.from;
+  OlympiaChampion[req.params.number].height = req.body.height;
+  OlympiaChampion[req.params.number].strengths = req.body.strengths;
+  console.log( OlympiaChampion );
+  res.redirect('/Olympia' );
+});
+// 一覧
+app.get("/ac6", (req, res)=>{
+  res.render('ac6', { data:AC} );
+});
+// Create
+app.get("/ac6/create", (req, res) => {
+  res.redirect('/public/ac6_create.html');
+});
+// Read
+app.get("/ac6/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = AC[ number ];
+  res.render('ac6_detail', {data: detail} );
+});
+// Delete
+app.get("/ac6/delete/:number", (req, res) => {
+  // 本来は削除の確認ページを表示する
+  // 本来は削除する番号が存在するか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  AC.splice( req.params.number, 1 );
+  res.redirect('/ac6' );
+});
+// Create
+app.post("/ac6", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const id = AC.length + 1;
+  const year = req.body.year;
+  const name = req.body.name;
+  const from = req.body.from;
+  const height = req.body.height;
+  const strengths = req.body.strengths;
+  AC.push( { id: id,year: year, name: name, from: from, height: height,strengths: strengths  } );
+  console.log( AC );
+  res.render('ac6', {data: AC} );
+});
+// Edit
+app.get("/ac6/edit/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = AC[ number ];
+  res.render('ac6_edit', {id: number, data: detail} );
+});
+// Update
+app.post("/ac6/update/:number", (req, res) => {
+  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  AC[req.params.number].year = req.body.change;
+  AC[req.params.number].name = req.body.name;
+  AC[req.params.number].from = req.body.from;
+  AC[req.params.number].height = req.body.height;
+  AC[req.params.number].strengths = req.body.strengths;
+  console.log( AC );
+  res.redirect('/Olympia' );
 });
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
 

@@ -1,0 +1,19 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %></title>
+</head>
+<body>
+  <h2><%= data.name %>の詳細</h2>
+  <table>
+    <tr><th>項目</th><th>データ</th></tr>
+    <tr><td>ID</td><td><%= data.id %></td></tr>
+    <tr><td>AC名</td><td><%= data.ac_name %></td></tr>
+    <tr><td>搭乗者</td><td><%= data.name %></td></tr>
+    <tr><td>ランク</td><td><%= data.rank %></td></tr>
+    <tr><td>所属</td><td><%= data.affiliate %></td></tr>
+  </table>  
+  <a href="/ac6/edit/<%= data.id -1 %>">編集</a>
+  <a href="/ac6">AC一覧に戻る</a>
+</body>
+</html>
