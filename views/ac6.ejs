@@ -7,10 +7,10 @@
 <body>
   <h2>ARMORED CORE6登場ACの詳細</h2>
   <table>
-    <tr><th>ID</th><th>AC名</th></tr>
+    <tr><th>ランク</th><th>AC名</th></tr>
       <% let number = 0 %>
       <% for( let row of data ) { %>
-        <tr><td><%= row.id %></td>
+        <tr><td><%= row.rank %></td>
         <td><a href="/ac6/<%= number %>"><%= row.ac_name %></a></td></tr>
         <% number += 1 %>
       <% } %>

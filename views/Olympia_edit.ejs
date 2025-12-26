@@ -9,10 +9,9 @@
   <form action="/Olympia/update/<%= data.id - 1 %>" method="POST">
     <table>
       <tr><th>項目</th><th>データ</th></tr>
-      <tr><td>ID</td><td><input type="text" name="id" value="<%= data.id %>"></td></tr>
       <tr><td>優勝年</td><td><input type="text" name="year" value="<%= data.year %>"></td></tr>
       <tr><td>名前</td><td><input type="text" name="name" value="<%= data.name %>"></td></tr>
-      <tr><td>出身</td><td><input type="text" name="form" value="<%= data.from %>"></td></tr>
+      <tr><td>出身</td><td><input type="text" name="from" value="<%= data.from %>"></td></tr>
       <tr><td>身長</td><td><input type="text" name="height" value="<%= data.height %>"></td></tr>
       <tr><td>長所</td><td><input type="text" name="strengths" value="<%= data.strengths %>"></td></tr>
     </table>

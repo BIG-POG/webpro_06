@@ -9,11 +9,12 @@
   <form action="/nijisanji/update/<%= data.id - 1 %>" method="POST">
     <table>
       <tr><th>項目</th><th>データ</th></tr>
-      <tr><td>ID</td><td><input type="text" name="id" value="<%= data.id %>"></td></tr>
       <tr><td>名前</td><td><input type="text" name="name" value="<%= data.name %>"></td></tr>
       <tr><td>活動期間</td><td><input type="text" name="year" value="<%= data.year %>"></td></tr>
       <tr><td>種族</td><td><input type="text" name="species" value="<%= data.species %>"></td></tr>
       <tr><td>誕生日</td><td><input type="text" name="birthday" value="<%= data.birthday %>"></td></tr>
+      <tr><td>ファンマーク</td><td><input type="text" name="fanmark" value="<%= data.fanmark %>"></td></tr>
+      <tr><td>ファンネーム</td><td><input type="text" name="fanname" value="<%= data.fanname %>"></td></tr>
     </table>
     <input type="submit" values="登録">
   </form>

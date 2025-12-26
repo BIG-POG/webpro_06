@@ -7,10 +7,9 @@
 <body>
   <h2>歴代ミスターオリンピアチャンピオンの詳細</h2>
   <table>
-    <tr><th>ID</th><th>優勝年</th><th>名前</th></tr>
+    <tr><th>優勝年</th><th>名前</th></tr>
       <% let number = 0 %>
       <% for( let row of data ) { %>
-        <tr><td><%= row.id %></td>
         <td><%= row.year %></td>
         <td><a href="/Olympia/<%= number %>"><%= row.name %></a></td></tr>
         <% number += 1 %>

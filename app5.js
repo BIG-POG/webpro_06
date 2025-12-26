@@ -1,3 +1,4 @@
+"use strict";
 const express = require("express");
 const app = express();
 
@@ -44,19 +45,19 @@ let OlympiaChampion =[
 
 ];
 let nijisanji_seeds =[
-  {id:1, name:"ドーラ(どーら)",year:"2018/06/03~",species:"ファイヤードレイク",birthday:"8/19"},
-  {id:2, name:"海夜叉神(うみやしゃのかみ)",year:"2018/06/03~2019/04/09",species:"神",birthday:"8/19"},
-  {id:3, name:"名伽尾アズマ(なかおあずま)",year:"2018/06/03~2019/05/31",species:"人間",birthday:"8/19"},
-  {id:4, name:"出雲霞(いずもかすみ)",year:"2018/06/03~2020/10/31",species:"人工知能",birthday:"8/19"},
-  {id:5, name:"轟京子(とどろききょうこ)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
-  {id:6, name:"シスター・クレア(しすたーくれあ)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
-  {id:7, name:"花畑チャイカ(はなばたけちゃいか)",year:"2018/06/03~",species:"エルフ",birthday:"8/19"},
-  {id:8, name:"社築(やしろきずく)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
-  {id:9, name:"安土桃(あづちもも)",year:"2018/06/03~2024/1/31",species:"人間",birthday:"8/19"},
-  {id:10, name:"鈴木勝(すずきまさる)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
-  {id:11, name:"緑仙 (りゅーしぇん)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
-  {id:12, name:"卯月コウ(うづきこう)",year:"2018/06/03~",species:"人間",birthday:"8/19"},
-  {id:13, name:"八朔ゆず(はっさくゆず)",year:"2018/06/03~2019/05/07",species:"人間",birthday:"8/19"}
+  {id:1, name:"ドーラ(どーら)",year:"2018/06/03~",species:"ファイヤードレイク",birthday:"8/19",fanmark:"🔥",fanname:"竜友（ドラとも）"},
+  {id:2, name:"海夜叉神(うみやしゃのかみ)",year:"2018/06/03~2019/04/09",species:"神",birthday:"8/19",fanmark:"⛩️",fanname:"参拝者，うみんちゅ"},
+  {id:3, name:"名伽尾アズマ(なかおあずま)",year:"2018/06/03~2019/05/31",species:"人間",birthday:"8/19",fanmark:"☀️",fanname:"カズマ"},
+  {id:4, name:"出雲霞(いずもかすみ)",year:"2018/06/03~2020/10/31",species:"人工知能",birthday:"8/19",fanmark:"🦑",fanname:"イカス民"},
+  {id:5, name:"轟京子(とどろききょうこ)",year:"2018/06/03~",species:"人間",birthday:"8/19",fanmark:"🐐",fanname:"ろきぺ（轟ペッパーズの略語）"},
+  {id:6, name:"シスター・クレア(しすたーくれあ)",year:"2018/06/03~",species:"人間",birthday:"8/19",fanmark:"🔔",fanname:"たぬさん"},
+  {id:7, name:"花畑チャイカ(はなばたけちゃいか)",year:"2018/06/03~",species:"エルフ",birthday:"8/19",fanmark:"🌵",fanname:"時間の無駄"},
+  {id:8, name:"社築(やしろきずく)",year:"2018/06/03~",species:"人間",birthday:"8/19",fanmark:"🖥",fanname:"飲み友"},
+  {id:9, name:"安土桃(あづちもも)",year:"2018/06/03~2024/1/31",species:"人間",birthday:"8/19",fanmark:"🍑",fanname:"己，桃クラブ，海綿隊"},
+  {id:10, name:"鈴木勝(すずきまさる)",year:"2018/06/03~",species:"人間",birthday:"8/19",fanmark:"☪️",fanname:"盟友"},
+  {id:11, name:"緑仙 (りゅーしぇん)",year:"2018/06/03~",species:"人間",birthday:"8/19",fanmark:"🐼",fanname:"忍者（メンバー限定）"},
+  {id:12, name:"卯月コウ(うづきこう)",year:"2018/06/03~",species:"人間",birthday:"8/19",fanmark:"🌙",fanname:"コウ国民，卯月軍団"},
+  {id:13, name:"八朔ゆず(はっさくゆず)",year:"2018/06/03~2019/05/07",species:"人間",birthday:"8/19",fanmark:"🍊",fanname:"ビタ民"}
 ];
 let AC =[
   {id:1, ac_name:"ロックスミス",name:"V.I フロイト",rank:"S/1",affiliate:"アーキバス強化人間部隊"},
@@ -248,7 +249,6 @@ app.get("/keiyo2/edit/:number", (req, res) => {
 app.post("/keiyo2/update/:number", (req, res) => {
   // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
   // 本来ならここにDBとのやり取りが入る
-  station2[req.params.number].id = req.body.id;
   station2[req.params.number].code = req.body.code;
   station2[req.params.number].name = req.body.name;
   station2[req.params.number].change = req.body.change;
@@ -289,7 +289,9 @@ app.post("/nijisanji", (req, res) => {
   const year = req.body.year;
   const species = req.body.species;
   const birthday = req.body.birthday;
-  nijisanji_seeds.push( { id: id, name: name, year: year, species: species, birthday: birthday } );
+  const fanmark = req.body.fanmark;
+  const fanname = req.body.fanname;
+  nijisanji_seeds.push( { id: id, name: name, year: year, species: species, birthday: birthday,fanmark: fanmark,fanname: fanname } );
   console.log( nijisanji_seeds );
   res.render('nijisanji', {data: nijisanji_seeds} );
 });
@@ -305,9 +307,11 @@ app.post("/nijisanji/update/:number", (req, res) => {
   // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
   // 本来ならここにDBとのやり取りが入る
   nijisanji_seeds[req.params.number].name = req.body.name;
-  nijisanji_seeds[req.params.number].year = req.body.change;
+  nijisanji_seeds[req.params.number].year = req.body.year;
   nijisanji_seeds[req.params.number].species = req.body.species;
   nijisanji_seeds[req.params.number].birthday = req.body.birthday;
+  nijisanji_seeds[req.params.number].fanmark = req.body.fanmark;
+  nijisanji_seeds[req.params.number].fanname = req.body.fanname;
   console.log( nijisanji_seeds );
   res.redirect('/nijisanji' );
 });
@@ -358,7 +362,7 @@ app.get("/Olympia/edit/:number", (req, res) => {
 app.post("/Olympia/update/:number", (req, res) => {
   // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
   // 本来ならここにDBとのやり取りが入る
-  OlympiaChampion[req.params.number].year = req.body.change;
+  OlympiaChampion[req.params.number].year = req.body.year;
   OlympiaChampion[req.params.number].name = req.body.name;
   OlympiaChampion[req.params.number].from = req.body.from;
   OlympiaChampion[req.params.number].height = req.body.height;
@@ -413,13 +417,12 @@ app.get("/ac6/edit/:number", (req, res) => {
 app.post("/ac6/update/:number", (req, res) => {
   // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
   // 本来ならここにDBとのやり取りが入る
-  AC[req.params.number].year = req.body.change;
+  AC[req.params.number].ac_name = req.body.ac_name;
   AC[req.params.number].name = req.body.name;
-  AC[req.params.number].from = req.body.from;
-  AC[req.params.number].height = req.body.height;
-  AC[req.params.number].strengths = req.body.strengths;
+  AC[req.params.number].rank = req.body.rank;
+  AC[req.params.number].affiliate = req.body.affiliate;
   console.log( AC );
-  res.redirect('/Olympia' );
+  res.redirect('/ac6' );
 });
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
 
