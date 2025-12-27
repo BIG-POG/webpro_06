@@ -1,0 +1,85 @@
+\documentclass[uplatex]{jsarticle}
+\usepackage{amsmath}
+\usepackage[dvipdfmx]{graphicx}
+
+\usepackage[uplatex,deluxe]{otf} % UTF
+\usepackage[noalphabet]{pxchfon} % must be after otf package
+\setcounter{tocdepth}{3}
+\usepackage{float}
+\usepackage{moreverb}
+\usepackage{lscape}
+%\pagestyle{empty}
+%\usepackage{wrapfig}
+
+%\usepackage{EasyLayout}
+\usepackage{listings}
+\usepackage{ascmac}
+
+% --- 追加設定 ---
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{verbatimbox}
+\usepackage{color}
+
+% --- ページレイアウト ---
+\geometry{a4paper, margin=1in}
+
+% --- listings (コードブロック) の設定 ---
+\lstset{
+    language=C,
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{purple},
+    showstringspaces=false,
+    breaklines=true,
+    frame=tb,
+    backgroundcolor=\color{black!5},
+    captionpos=b,
+    numberstyle=\tiny\color{gray},
+    numbers=left,
+    stepnumber=1
+}
+
+% --- ドキュメント開始 ---
+\begin{document}
+\title{webプログラミング仕様書}
+\author{25G1088　津村 大樹}
+\date{\today}
+
+\maketitle
+\section{Github上のリポジトリのURL}
+\url{https://github.com/BIG-POG/webpro_06}
+\section{開発者向け仕様書}
+\subsection{にじさんじSEEd'sメンバー一覧}
+\subsubsection{概要}
+本システムではVTuder事務所であるにじさんじの元SEEd's一期生の情報を管理し，
+REST APIの原則に従って，データの一覧，詳細表示，追加，変更，削除の5つの操作を提供するシステムである．
+\subsubsection{データ構造}
+データ構造は以下の表\ref{1-1}のようになる．
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+項目 & データ型 & 説明 \\
+\hline
+id & 整数 & メンバーのID \\
+name & 文字列 & メンバーの名前 \\
+year & 文字列 & メンバーの活動期間 \\
+species & 文字列 & メンバーの種族 \\
+birthday & 文字列 & メンバーの誕生日 \\
+fanmark & 文字列 & メンバーのファンマーク \\
+fanname & 文字列 & メンバーのファンネーム \\
+\hline
+\end{tabular}
+\caption{にじさんじSEEd'sメンバーのデータ構造}
+\label{1-1}
+\end{table}
+表\ref{1-1}に示すデータはnijisanji\_seedsに保存し，メンバーのID，名前，活動期間，種族，誕生日，ファンマーク，ファンネームを管理する．
+
+\subsubsection{ページ遷移}
+
+\subsection{ARMORED CORE6登場AC一覧}
+
+\end{document}

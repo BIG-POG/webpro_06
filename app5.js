@@ -284,14 +284,15 @@ app.get("/nijisanji/delete/:number", (req, res) => {
 // Create
 app.post("/nijisanji", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
-  const id = nijisanji_seeds.length + 1;
+  let new_id = 1;
+  new_id = nijisanji_seeds[nijisanji_seeds.length - 1].id + 1;
   const name = req.body.name;
   const year = req.body.year;
   const species = req.body.species;
   const birthday = req.body.birthday;
   const fanmark = req.body.fanmark;
   const fanname = req.body.fanname;
-  nijisanji_seeds.push( { id: id, name: name, year: year, species: species, birthday: birthday,fanmark: fanmark,fanname: fanname } );
+  nijisanji_seeds.push( { id: new_id, name: name, year: year, species: species, birthday: birthday,fanmark: fanmark,fanname: fanname } );
   console.log( nijisanji_seeds );
   res.render('nijisanji', {data: nijisanji_seeds} );
 });
@@ -341,13 +342,14 @@ app.get("/Olympia/delete/:number", (req, res) => {
 // Create
 app.post("/Olympia", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
-  const id = OlympiaChampion.length + 1;
+  let new_id = 1;
+  new_id = nijisanji_seeds[nijisanji_seeds.length - 1].id + 1;
   const year = req.body.year;
   const name = req.body.name;
   const from = req.body.from;
   const height = req.body.height;
   const strengths = req.body.strengths;
-  OlympiaChampion.push( { id: id,year: year, name: name, from: from, height: height,strengths: strengths  } );
+  OlympiaChampion.push( { id: new_id,year: year, name: name, from: from, height: height,strengths: strengths  } );
   console.log( OlympiaChampion );
   res.render('Olympia', {data: OlympiaChampion} );
 });
@@ -396,13 +398,14 @@ app.get("/ac6/delete/:number", (req, res) => {
 // Create
 app.post("/ac6", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
-  const id = AC.length + 1;
+  let new_id = 1;
+  new_id = AC[AC.length - 1].id + 1;
   const year = req.body.year;
   const name = req.body.name;
   const from = req.body.from;
   const height = req.body.height;
   const strengths = req.body.strengths;
-  AC.push( { id: id,year: year, name: name, from: from, height: height,strengths: strengths  } );
+  AC.push( { id: new_id,year: year, name: name, from: from, height: height,strengths: strengths  } );
   console.log( AC );
   res.render('ac6', {data: AC} );
 });
