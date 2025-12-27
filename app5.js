@@ -282,7 +282,7 @@ app.get("/nijisanji/delete/:number", (req, res) => {
   res.redirect('/nijisanji' );
 });
 // Create
-app.post("/nijisanji", (req, res) => {
+app.post("/nijisanji_new", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
   let new_id = 1;
   new_id = nijisanji_seeds[nijisanji_seeds.length - 1].id + 1;
@@ -340,7 +340,7 @@ app.get("/Olympia/delete/:number", (req, res) => {
   res.redirect('/Olympia' );
 });
 // Create
-app.post("/Olympia", (req, res) => {
+app.post("/Olympia_new", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
   let new_id = 1;
   new_id = nijisanji_seeds[nijisanji_seeds.length - 1].id + 1;
@@ -396,7 +396,7 @@ app.get("/ac6/delete/:number", (req, res) => {
   res.redirect('/ac6' );
 });
 // Create
-app.post("/ac6", (req, res) => {
+app.post("/ac6_new", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
   let new_id = 1;
   new_id = AC[AC.length - 1].id + 1;

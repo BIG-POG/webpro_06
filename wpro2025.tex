@@ -1,6 +1,7 @@
 \documentclass[uplatex]{jsarticle}
 \usepackage{amsmath}
-\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx}
+\usepackage[dvipdfmx]{color}
 
 \usepackage[uplatex,deluxe]{otf} % UTF
 \usepackage[noalphabet]{pxchfon} % must be after otf package
@@ -60,26 +61,203 @@ REST APIの原則に従って，データの一覧，詳細表示，追加，変
 データ構造は以下の表\ref{1-1}のようになる．
 \begin{table}[H]
 \centering
+\caption{にじさんじSEEd'sメンバーのデータ構造}
+\begin{tabular}{|c|c|c|}
+\hline
+項目 & データ型 & 説明 \\\hline
+id & 整数 & メンバーのID \\\hline
+name & 文字列 & メンバーの名前 \\\hline
+year & 文字列 & メンバーの活動期間 \\\hline
+species & 文字列 & メンバーの種族 \\\hline
+birthday & 文字列 & メンバーの誕生日 \\\hline
+fanmark & 文字列 & メンバーのファンマーク \\\hline
+fanname & 文字列 & メンバーのファンネーム \\\hline
+\end{tabular}
+\label{1-1}
+\end{table}
+表\ref{1-1}に示すデータは\texttt{nijisanji\_seeds}に保存し，メンバーのID，名前，活動期間，種族，誕生日，ファンマーク，ファンネームを管理する．
+idは各メンバーを一意に識別するためのものであり，データの追加を行った場合には自動で設定される．
+
+\subsubsection{ページ遷移}
+本システムのページ遷移は以下の図\ref{fig:1-1}のようになる．\par
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{fig/nijisanji.png}
+\caption{にじさんじSEEd'sメンバーページ遷移図}
+\label{fig:1-1}
+\end{figure}
+図\ref{fig:1-1}に示すように，トップページからにじさんじSEEd'sメンバー一覧ページへ遷移し，そこから各メンバーの詳細ページへ遷移できる．
+詳細ページからは編集ページへ遷移でき，編集ページでデータを更新した後，一覧ページへ戻ることができる．また，詳細ページからメンバーの削除も可能であり，削除後は一覧ページへ戻る．
+そして，メンバー一覧ページから新規メンバー登録ページへ遷移できる．\par
+\subsubsection{リソースの説明}
+本システムで使用する各ページのリソースのHTTPメソッドとリソース名は以下の表\ref{1-2}に示す．
+\begin{table}[H]
+\centering
+\caption{にじさんじSEEd'sメンバーリソース一覧}
+\begin{tabular}{|c|c|}
+\hline
+HTTPメソッド & リソース名 \\\hline
+\texttt{get} & \texttt{/nijisanji} \\\hline
+\texttt{get} & \texttt{/nijisanji/create}\\\hline
+\texttt{get}& \texttt{/nijisanji/:number} \\\hline
+\texttt{get}& \texttt{/nijisanji/delete/:number} \\\hline
+\texttt{post}& \texttt{/nijisanji\_new} \\\hline
+\texttt{get}& \texttt{/nijisanji/edit/:number} \\\hline
+\texttt{post}& \texttt{/nijisanji/update/:number} \\
+\hline
+\end{tabular}
+\caption{にじさんじSEEd'sメンバーリソース一覧}
+\label{1-2}
+\end{table}
+表\ref{1-2}に示すように，各リソースはHTTPメソッドとリソース名で構成されている．
+\texttt{get}メソッドはデータの取得に使用され，\texttt{post}メソッドはデータの作成や更新に使用される．
+リソース名は各ページのURLパスを表している．
+\texttt{/nijisanji}はメンバーの一覧を表示するページであり，サーバーから\texttt{nijisanji\_seeds}データを取得し，\texttt{nijisanji.ejs}テンプレートに渡して表示する．\par
+\texttt{/nijisanji/create}は新規メンバー登録ページであり，登録用のフォームである\texttt{nijisanji\_create.html}を表示し，フォームから入力されたデータを\texttt{post}メソッドで\texttt{/nijisanji}リソースに送信し，新しいメンバーを追加する．\par
+\texttt{/nijisanji/:number}は各メンバーの詳細ページであり，指定されたメンバーIDに対応するデータを取得し，詳細表示用のテンプレートである\texttt{nijisanji\_detail.ejs}を表示する．\par
+\texttt{/nijisanji/delete/:number}は各メンバーの削除処理を行うリソースであり，指定されたメンバーIDに対応するデータを削除し，一覧ページに遷移する．\par
+\texttt{/nijisanji\_new}は新規メンバーの登録処理を行うリソースであり，登録ページから送信されたデータを受け取り，新しいメンバーを\texttt{nijisanji\_seeds}に追加し，一覧ページに遷移する．\par
+\texttt{/nijisanji/edit/:number}は各メンバーの編集ページであり，指定されたメンバーIDに対応するデータを取得し，編集用のテンプレートである\texttt{nijisanji\_edit.ejs}を表示する．\par
+\texttt{/nijisanji/update/:number}は各メンバーの更新処理を行うリソースであり，編集ページから送信されたデータを受け取り，対応するメンバーのデータを更新し，一覧ページに遷移する．\par
+
+
+
+
+
+
+
+
+\subsection{歴代ミスターオリンピアチャンピオン一覧}
+\subsubsection{概要}
+本システムでは世界最高峰のボディビル大会であるミスターオリンピアの歴代チャンピオンの情報を管理し，
+REST APIの原則に従って，データの一覧，詳細表示，追加，変更，削除の5つの操作を提供するシステムである．
+\subsubsection{データ構造}
+データ構造は以下の表\ref{2-1}のようになる．
+\begin{table}[H]
+\centering
+\caption{歴代ミスターオリンピアチャンピオンのデータ構造}
 \begin{tabular}{|c|c|c|}
 \hline
 項目 & データ型 & 説明 \\
 \hline
-id & 整数 & メンバーのID \\
-name & 文字列 & メンバーの名前 \\
-year & 文字列 & メンバーの活動期間 \\
-species & 文字列 & メンバーの種族 \\
-birthday & 文字列 & メンバーの誕生日 \\
-fanmark & 文字列 & メンバーのファンマーク \\
-fanname & 文字列 & メンバーのファンネーム \\
+id & 整数 & チャンピオンのID \\
+year & 文字列 & チャンピオンの獲得年 \\
+name & 文字列 & チャンピオンの名前 \\
+from & 文字列 & チャンピオンの出身地 \\
+height & 文字列 & チャンピオンの身長 \\
+strengths & 文字列 & チャンピオンの長所 \\
 \hline
 \end{tabular}
-\caption{にじさんじSEEd'sメンバーのデータ構造}
-\label{1-1}
+\label{2-1}
 \end{table}
-表\ref{1-1}に示すデータはnijisanji\_seedsに保存し，メンバーのID，名前，活動期間，種族，誕生日，ファンマーク，ファンネームを管理する．
+表\ref{2-1}に示すデータは\texttt{OlympiaChampion}に保存し，チャンピオンのID，獲得年，名前，出身地，身長，長所を管理する．
+idは各チャンピオンを一意に識別するためのものであり，データの追加を行った場合には自動で設定される．
 
 \subsubsection{ページ遷移}
+本システムのページ遷移は以下の図\ref{fig:2-1}のようになる．\par
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{fig/Olympia.png}
+\caption{歴代ミスターオリンピアチャンピオンページ遷移図}
+\label{fig:2-1}
+\end{figure}
+図\ref{fig:2-1}に示すように，トップページから歴代チャンピオン一覧ページへ遷移し，そこから各チャンピオンの詳細ページへ遷移できる．
+詳細ページからは編集ページへ遷移でき，編集ページでデータを更新した後，一覧ページへ戻ることができる．また，詳細ページからチャンピオンの削除も可能であり，削除後は一覧ページへ戻る．
+そして，歴代チャンピオン一覧ページから新規のチャンピオン登録ページへ遷移できる．\par
+\subsubsection{リソースの説明}
+本システムで使用する各ページのリソースのHTTPメソッドとリソース名は以下の表\ref{1-2}に示す．
+\begin{table}[H]
+\centering
+\caption{歴代ミスターオリンピアチャンピオンリソース一覧}
+\begin{tabular}{|c|c|}
+\hline
+HTTPメソッド & リソース名 \\\hline
+\texttt{get} & \texttt{/Olympia} \\\hline
+\texttt{get} & \texttt{/Olympia/create}\\\hline
+\texttt{get}& \texttt{/Olympia/:number} \\\hline
+\texttt{get}& \texttt{/Olympia/delete/:number} \\\hline
+\texttt{post}& \texttt{/Olympia\_new} \\\hline
+\texttt{get}& \texttt{/Olympia/edit/:number} \\\hline
+\texttt{post}& \texttt{/Olympia/update/:number} \\
+\hline
+\end{tabular}
+\label{2-2}
+\end{table}
+表\ref{1-2}に示すように，各リソースはHTTPメソッドとリソース名で構成されている．
+\texttt{get}メソッドはデータの取得に使用され，\texttt{post}メソッドはデータの作成や更新に使用される．
+リソース名は各ページのURLパスを表している．
+\texttt{/Olympia}は歴代チャンピオンの一覧を表示するページであり，サーバーから\texttt{OlympiaChampion}データを取得し，\texttt{Olympia.ejs}テンプレートに渡して表示する．
+\texttt{/Olympia/create}は新規のチャンピオン登録ページであり，登録用のフォームである\texttt{Olympia\_create.html}を表示し，フォームから入力されたデータを\texttt{post}メソッドで\texttt{/Olympia}リソースに送信し，新しいチャンピオンを追加する．
+\texttt{/Olympia/:number}は各チャンピオンの詳細ページであり，指定されたIDに対応するデータを取得し，詳細表示用のテンプレートである\texttt{Olympia\_detail.ejs}を表示する．
+\texttt{/Olympia/delete/:number}は各チャンピオンの削除処理を行うリソースであり，指定されたIDに対応するデータを削除し，一覧ページに遷移する．
+\texttt{/Olympia\_new}は新規のチャンピオンの登録処理を行うリソースであり，登録ページから送信されたデータを受け取り，新しいチャンピオンを\texttt{OlympiaChampion}に追加し，一覧ページに遷移する．
+\texttt{/Olympia/edit/:number}は各チャンピオンの編集ページであり，指定されたIDに対応するデータを取得し，編集用のテンプレートである\texttt{Olympia\_edit.ejs}を表示する．
+\texttt{/Olympia/update/:number}は各チャンピオンの更新処理を行うリソースであり，編集ページから送信されたデータを受け取り，対応するチャンピオンのデータを更新し，一覧ページに遷移する．
+
 
 \subsection{ARMORED CORE6登場AC一覧}
+\subsubsection{概要}
+本システムでは2023年にフロム・ソフトウェアから発売されたARMORED CORE6に登場するACの情報を管理し，
+REST APIの原則に従って，データの一覧，詳細表示，追加，変更，削除の5つの操作を提供するシステムである．
+\subsubsection{データ構造}
+データ構造は以下の表\ref{3-1}のようになる．
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+項目 & データ型 & 説明 \\
+\hline
+id & 整数 & ACのID \\
+ac\_name & 文字列 & ACの名前 \\
+name & 文字列 & 搭乗者 \\
+rank & 文字列 & ランク \\
+affiliate & 文字列 & 所属 \\
+\hline
+\end{tabular}
+\caption{ARMORED CORE6登場ACのデータ構造}
+\label{3-1}
+\end{table}
+表\ref{3-1}に示すデータはACに保存し，ACのID，名前，搭乗者，ランク，所属を管理する．
+idは各ACを一意に識別するためのものであり，データの追加を行った場合には自動で設定される．
 
+\subsubsection{ページ遷移}
+本システムのページ遷移は以下の図\ref{fig:2-1}のようになる．\par
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{fig/Olympia.png}
+\caption{歴代ミスターオリンピアチャンピオンページ遷移図}
+\label{fig:3-1}
+\end{figure}
+図\ref{fig:2-1}に示すように，トップページから歴代チャンピオン一覧ページへ遷移し，そこから各チャンピオンの詳細ページへ遷移できる．
+詳細ページからは編集ページへ遷移でき，編集ページでデータを更新した後，一覧ページへ戻ることができる．また，詳細ページからチャンピオンの削除も可能であり，削除後は一覧ページへ戻る．
+そして，歴代チャンピオン一覧ページから新規のチャンピオン登録ページへ遷移できる．\par
+\subsubsection{リソースの説明}
+本システムで使用する各ページのリソースのHTTPメソッドとリソース名は以下の表\ref{1-2}に示す．
+\begin{table}[H]
+\centering
+\caption{歴代ミスターオリンピアチャンピオンリソース一覧}
+\begin{tabular}{|c|c|}
+\hline
+HTTPメソッド & リソース名 \\\hline
+\texttt{get} & \texttt{/Olympia} \\\hline
+\texttt{get} & \texttt{/Olympia/create}\\\hline
+\texttt{get}& \texttt{/Olympia/:number} \\\hline
+\texttt{get}& \texttt{/Olympia/delete/:number} \\\hline
+\texttt{post}& \texttt{/Olympia\_new} \\\hline
+\texttt{get}& \texttt{/Olympia/edit/:number} \\\hline
+\texttt{post}& \texttt{/Olympia/update/:number} \\
+\hline
+\end{tabular}
+\label{3-2}
+\end{table}
+表\ref{1-2}に示すように，各リソースはHTTPメソッドとリソース名で構成されている．
+\texttt{get}メソッドはデータの取得に使用され，\texttt{post}メソッドはデータの作成や更新に使用される．
+リソース名は各ページのURLパスを表している．
+\texttt{/Olympia}は歴代チャンピオンの一覧を表示するページであり，サーバーから\texttt{OlympiaChampion}データを取得し，\texttt{Olympia.ejs}テンプレートに渡して表示する．
+\texttt{/Olympia/create}は新規のチャンピオン登録ページであり，登録用のフォームである\texttt{Olympia\_create.html}を表示し，フォームから入力されたデータを\texttt{post}メソッドで\texttt{/Olympia}リソースに送信し，新しいチャンピオンを追加する．
+\texttt{/Olympia/:number}は各チャンピオンの詳細ページであり，指定されたIDに対応するデータを取得し，詳細表示用のテンプレートである\texttt{Olympia\_detail.ejs}を表示する．
+\texttt{/Olympia/delete/:number}は各チャンピオンの削除処理を行うリソースであり，指定されたIDに対応するデータを削除し，一覧ページに遷移する．
+\texttt{/Olympia\_new}は新規のチャンピオンの登録処理を行うリソースであり，登録ページから送信されたデータを受け取り，新しいチャンピオンを\texttt{OlympiaChampion}に追加し，一覧ページに遷移する．
+\texttt{/Olympia/edit/:number}は各チャンピオンの編集ページであり，指定されたIDに対応するデータを取得し，編集用のテンプレートである\texttt{Olympia\_edit.ejs}を表示する．
+\texttt{/Olympia/update/:number}は各チャンピオンの更新処理を行うリソースであり，編集ページから送信されたデータを受け取り，対応するチャンピオンのデータを更新し，一覧ページに遷移する．
 \end{document}
