@@ -113,7 +113,7 @@ HTTPメソッド & リソース名 \\\hline
 \texttt{get}メソッドはデータの取得に使用され，\texttt{post}メソッドはデータの作成や更新に使用される．
 リソース名は各ページのURLパスを表している．
 \texttt{/nijisanji}はメンバーの一覧を表示するページであり，サーバーから\texttt{nijisanji\_seeds}データを取得し，\texttt{nijisanji.ejs}テンプレートに渡して表示する．\par
-\texttt{/nijisanji/create}は新規メンバー登録ページであり，登録用のフォームである\texttt{nijisanji\_create.html}を表示し，フォームから入力されたデータを\texttt{post}メソッドで\texttt{/nijisanji}リソースに送信し，新しいメンバーを追加する．\par
+\texttt{/nijisanji/create}は新規メンバー登録ページであり，登録用のフォームである\texttt{nijisanji\_create.html}を表示し，フォームから入力されたデータを\texttt{post}メソッドで\texttt{/nijisanji\_new}リソースに送信し，新しいメンバーを追加する．\par
 \texttt{/nijisanji/:number}は各メンバーの詳細ページであり，指定されたメンバーIDに対応するデータを取得し，詳細表示用のテンプレートである\texttt{nijisanji\_detail.ejs}を表示する．\par
 \texttt{/nijisanji/delete/:number}は各メンバーの削除処理を行うリソースであり，指定されたメンバーIDに対応するデータを削除し，一覧ページに遷移する．\par
 \texttt{/nijisanji\_new}は新規メンバーの登録処理を行うリソースであり，登録ページから送信されたデータを受け取り，新しいメンバーを\texttt{nijisanji\_seeds}に追加し，一覧ページに遷移する．\par
@@ -165,7 +165,7 @@ idは各チャンピオンを一意に識別するためのものであり，デ
 詳細ページからは編集ページへ遷移でき，編集ページでデータを更新した後，一覧ページへ戻ることができる．また，詳細ページからチャンピオンの削除も可能であり，削除後は一覧ページへ戻る．
 そして，歴代チャンピオン一覧ページから新規のチャンピオン登録ページへ遷移できる．\par
 \subsubsection{リソースの説明}
-本システムで使用する各ページのリソースのHTTPメソッドとリソース名は以下の表\ref{1-2}に示す．
+本システムで使用する各ページのリソースのHTTPメソッドとリソース名は以下の表\ref{2-2}に示す．
 \begin{table}[H]
 \centering
 \caption{歴代ミスターオリンピアチャンピオンリソース一覧}
@@ -183,11 +183,11 @@ HTTPメソッド & リソース名 \\\hline
 \end{tabular}
 \label{2-2}
 \end{table}
-表\ref{1-2}に示すように，各リソースはHTTPメソッドとリソース名で構成されている．
+表\ref{2-2}に示すように，各リソースはHTTPメソッドとリソース名で構成されている．
 \texttt{get}メソッドはデータの取得に使用され，\texttt{post}メソッドはデータの作成や更新に使用される．
 リソース名は各ページのURLパスを表している．
 \texttt{/Olympia}は歴代チャンピオンの一覧を表示するページであり，サーバーから\texttt{OlympiaChampion}データを取得し，\texttt{Olympia.ejs}テンプレートに渡して表示する．
-\texttt{/Olympia/create}は新規のチャンピオン登録ページであり，登録用のフォームである\texttt{Olympia\_create.html}を表示し，フォームから入力されたデータを\texttt{post}メソッドで\texttt{/Olympia}リソースに送信し，新しいチャンピオンを追加する．
+\texttt{/Olympia/create}は新規のチャンピオン登録ページであり，登録用のフォームである\texttt{Olympia\_create.html}を表示し，フォームから入力されたデータを\texttt{post}メソッドで\texttt{/Olympia\_new}リソースに送信し，新しいチャンピオンを追加する．
 \texttt{/Olympia/:number}は各チャンピオンの詳細ページであり，指定されたIDに対応するデータを取得し，詳細表示用のテンプレートである\texttt{Olympia\_detail.ejs}を表示する．
 \texttt{/Olympia/delete/:number}は各チャンピオンの削除処理を行うリソースであり，指定されたIDに対応するデータを削除し，一覧ページに遷移する．
 \texttt{/Olympia\_new}は新規のチャンピオンの登録処理を行うリソースであり，登録ページから送信されたデータを受け取り，新しいチャンピオンを\texttt{OlympiaChampion}に追加し，一覧ページに遷移する．
@@ -221,43 +221,92 @@ affiliate & 文字列 & 所属 \\
 idは各ACを一意に識別するためのものであり，データの追加を行った場合には自動で設定される．
 
 \subsubsection{ページ遷移}
-本システムのページ遷移は以下の図\ref{fig:2-1}のようになる．\par
+本システムのページ遷移は以下の図\ref{fig:3-1}のようになる．\par
 \begin{figure}[H]
 \centering
 \includegraphics[width=8cm]{fig/Olympia.png}
-\caption{歴代ミスターオリンピアチャンピオンページ遷移図}
+\caption{ARMORED CORE6登場ACページ遷移図}
 \label{fig:3-1}
 \end{figure}
-図\ref{fig:2-1}に示すように，トップページから歴代チャンピオン一覧ページへ遷移し，そこから各チャンピオンの詳細ページへ遷移できる．
-詳細ページからは編集ページへ遷移でき，編集ページでデータを更新した後，一覧ページへ戻ることができる．また，詳細ページからチャンピオンの削除も可能であり，削除後は一覧ページへ戻る．
-そして，歴代チャンピオン一覧ページから新規のチャンピオン登録ページへ遷移できる．\par
+図\ref{fig:3-1}に示すように，トップページから登場AC一覧ページへ遷移し，そこから各ACの詳細ページへ遷移できる．
+詳細ページからは編集ページへ遷移でき，編集ページでデータを更新した後，一覧ページへ戻ることができる．また，詳細ページからACの削除も可能であり，削除後は一覧ページへ戻る．
+そして，登場AC一覧ページから新規のAC登録ページへ遷移できる．\par
 \subsubsection{リソースの説明}
-本システムで使用する各ページのリソースのHTTPメソッドとリソース名は以下の表\ref{1-2}に示す．
+本システムで使用する各ページのリソースのHTTPメソッドとリソース名は以下の表\ref{3-2}に示す．
 \begin{table}[H]
 \centering
-\caption{歴代ミスターオリンピアチャンピオンリソース一覧}
+\caption{ARMORED CORE6登場ACリソース一覧}
 \begin{tabular}{|c|c|}
 \hline
 HTTPメソッド & リソース名 \\\hline
-\texttt{get} & \texttt{/Olympia} \\\hline
-\texttt{get} & \texttt{/Olympia/create}\\\hline
-\texttt{get}& \texttt{/Olympia/:number} \\\hline
-\texttt{get}& \texttt{/Olympia/delete/:number} \\\hline
-\texttt{post}& \texttt{/Olympia\_new} \\\hline
-\texttt{get}& \texttt{/Olympia/edit/:number} \\\hline
-\texttt{post}& \texttt{/Olympia/update/:number} \\
+\texttt{get} & \texttt{/ac6} \\\hline
+\texttt{get} & \texttt{/ac6}\\\hline
+\texttt{get}& \texttt{/ac6/:number} \\\hline
+\texttt{get}& \texttt{/ac6/delete/:number} \\\hline
+\texttt{post}& \texttt{/ac6\_new} \\\hline
+\texttt{get}& \texttt{/ac6/edit/:number} \\\hline
+\texttt{post}& \texttt{/ac6/update/:number} \\
 \hline
 \end{tabular}
 \label{3-2}
 \end{table}
-表\ref{1-2}に示すように，各リソースはHTTPメソッドとリソース名で構成されている．
+表\ref{3-2}に示すように，各リソースはHTTPメソッドとリソース名で構成されている．
 \texttt{get}メソッドはデータの取得に使用され，\texttt{post}メソッドはデータの作成や更新に使用される．
 リソース名は各ページのURLパスを表している．
-\texttt{/Olympia}は歴代チャンピオンの一覧を表示するページであり，サーバーから\texttt{OlympiaChampion}データを取得し，\texttt{Olympia.ejs}テンプレートに渡して表示する．
-\texttt{/Olympia/create}は新規のチャンピオン登録ページであり，登録用のフォームである\texttt{Olympia\_create.html}を表示し，フォームから入力されたデータを\texttt{post}メソッドで\texttt{/Olympia}リソースに送信し，新しいチャンピオンを追加する．
-\texttt{/Olympia/:number}は各チャンピオンの詳細ページであり，指定されたIDに対応するデータを取得し，詳細表示用のテンプレートである\texttt{Olympia\_detail.ejs}を表示する．
-\texttt{/Olympia/delete/:number}は各チャンピオンの削除処理を行うリソースであり，指定されたIDに対応するデータを削除し，一覧ページに遷移する．
-\texttt{/Olympia\_new}は新規のチャンピオンの登録処理を行うリソースであり，登録ページから送信されたデータを受け取り，新しいチャンピオンを\texttt{OlympiaChampion}に追加し，一覧ページに遷移する．
-\texttt{/Olympia/edit/:number}は各チャンピオンの編集ページであり，指定されたIDに対応するデータを取得し，編集用のテンプレートである\texttt{Olympia\_edit.ejs}を表示する．
-\texttt{/Olympia/update/:number}は各チャンピオンの更新処理を行うリソースであり，編集ページから送信されたデータを受け取り，対応するチャンピオンのデータを更新し，一覧ページに遷移する．
+\texttt{/ac6}はACの一覧を表示するページであり，サーバーから\texttt{AC}データを取得し，\texttt{ac6.ejs}テンプレートに渡して表示する．
+\texttt{/ac6/create}は新規のAC登録ページであり，登録用のフォームである\texttt{ac6\_create.html}を表示し，フォームから入力されたデータを\texttt{post}メソッドで\texttt{/ac6\_new}リソースに送信し，新しいACを追加する．
+\texttt{/ac6/:number}は各ACの詳細ページであり，指定されたIDに対応するデータを取得し，詳細表示用のテンプレートである\texttt{Olympia\_detail.ejs}を表示する．
+\texttt{/ac6/delete/:number}は各ACの削除処理を行うリソースであり，指定されたIDに対応するデータを削除し，一覧ページに遷移する．
+\texttt{/ac6\_new}は新規のACの登録処理を行うリソースであり，登録ページから送信されたデータを受け取り，新しいACを\texttt{AC}に追加し，一覧ページに遷移する．
+\texttt{/ac6/edit/:number}は各ACの編集ページであり，指定されたIDに対応するデータを取得し，編集用のテンプレートである\texttt{ac6\_edit.ejs}を表示する．
+\texttt{/ac6/update/:number}は各ACの更新処理を行うリソースであり，編集ページから送信されたデータを受け取り，対応するACのデータを更新し，一覧ページに遷移する．
+
+\section{管理者向け仕様書}
+\subsection{インストール方法}
+本システムを運用するために必要なソフトウェアとそのインストール手順について説明する．
+まず初めに，MacOSにパッケージ管理システムである\texttt{Homebrew}をインストールする．
+ターミナルで以下のコマンドを実行する．
+\begin{lstlisting}
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+\end{lstlisting}
+パスワードの入力を求められた場合は，MacOSのログインパスワードを入力しプロンプトが表示されるまで待つ．
+次に以下の2つのコマンドを順に実行する．
+\begin{lstlisting}
+    ( echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+\end{lstlisting}
+次に，JavaScriptの実行環境である\texttt{Node.js}を管理するために必要な\texttt{nodebrew}をインストールする．
+ターミナルで以下の4つのコマンドを順に実行する．
+\begin{lstlisting}
+    brew install nodebrew
+    nodebrew setup
+    echo 'export PATH=$HOME/.nodebrew/current/bin:$PATH' >> ~/.zshrc
+    source ~/.zshrc
+\end{lstlisting}
+次に，\texttt{Node.js}の最新版をインストールする．
+ターミナルで以下の2つのコマンドを順に実行する．
+\begin{lstlisting}
+    nodebrew install stable
+    nodebrew ls
+\end{lstlisting}
+ここで表示された最新版のバージョン番号を確認し，以下のコマンドを実行してインストールした最新版を使用するように設定する．仕様書ではバージョン番号を\texttt{v24.3.0}と仮定する．
+最後に以下の2つのコマンドを順に実行する．
+\begin{lstlisting}  
+    nodebrew use v24.3.0
+    npm install -g npm
+\end{lstlisting}
+\subsection{起動方法}
+本システムを起動する手順について説明する．
+まず初めに，ターミナルを起動し，本システムのプロジェクトディレクトリに移動する．
+次に，以下のコマンドを実行し本システムを起動する．
+\begin{lstlisting}
+    node app5.js
+\end{lstlisting}
+ターミナルに\texttt{Example app listening on port 8080!}と表示されたら起動できている状態である．
+\subsection{起動できない場合}
+本システムが起動できない場合の対処方法について説明する．
+まず初めに，ターミナルで既に本システムや他のアプリケーションが使用しているポート番号が競合していないか確認する．
+
+
+\subsection{分かっている不具合}
 \end{document}

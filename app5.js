@@ -205,7 +205,6 @@ app.get("/keiyo2/create", (req, res) => {
 });
 // Read
 app.get("/keiyo2/:number", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   const number = req.params.number;
   const detail = station2[ number ];
   res.render('keiyo2_detail', {data: detail} );
@@ -219,15 +218,11 @@ app.get("/keiyo_add", (req, res) => {
 });
 // Delete
 app.get("/keiyo2/delete/:number", (req, res) => {
-  // 本来は削除の確認ページを表示する
-  // 本来は削除する番号が存在するか厳重にチェックする
-  // 本来ならここにDBとのやり取りが入る
   station2.splice( req.params.number, 1 );
   res.redirect('/keiyo2' );
 });
 // Create
 app.post("/keiyo2", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   const id = station2.length + 1;
   const code = req.body.code;
   const name = req.body.name;
@@ -240,15 +235,12 @@ app.post("/keiyo2", (req, res) => {
 });
 // Edit
 app.get("/keiyo2/edit/:number", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   const number = req.params.number;
   const detail = station2[ number ];
   res.render('keiyo2_edit', {id: number, data: detail} );
 });
 // Update
 app.post("/keiyo2/update/:number", (req, res) => {
-  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
-  // 本来ならここにDBとのやり取りが入る
   station2[req.params.number].code = req.body.code;
   station2[req.params.number].name = req.body.name;
   station2[req.params.number].change = req.body.change;
@@ -268,22 +260,17 @@ app.get("/nijisanji/create", (req, res) => {
 });
 // Read
 app.get("/nijisanji/:number", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   const number = req.params.number;
   const detail = nijisanji_seeds[ number ];
   res.render('nijisanji_detail', {data: detail} );
 });
 // Delete
 app.get("/nijisanji/delete/:number", (req, res) => {
-  // 本来は削除の確認ページを表示する
-  // 本来は削除する番号が存在するか厳重にチェックする
-  // 本来ならここにDBとのやり取りが入る
   nijisanji_seeds.splice( req.params.number, 1 );
   res.redirect('/nijisanji' );
 });
 // Create
 app.post("/nijisanji_new", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   let new_id = 1;
   new_id = nijisanji_seeds[nijisanji_seeds.length - 1].id + 1;
   const name = req.body.name;
@@ -298,15 +285,12 @@ app.post("/nijisanji_new", (req, res) => {
 });
 // Edit
 app.get("/nijisanji/edit/:number", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   const number = req.params.number;
   const detail = nijisanji_seeds[ number ];
   res.render('nijisanji_edit', {id: number, data: detail} );
 });
 // Update
 app.post("/nijisanji/update/:number", (req, res) => {
-  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
-  // 本来ならここにDBとのやり取りが入る
   nijisanji_seeds[req.params.number].name = req.body.name;
   nijisanji_seeds[req.params.number].year = req.body.year;
   nijisanji_seeds[req.params.number].species = req.body.species;
@@ -326,22 +310,17 @@ app.get("/Olympia/create", (req, res) => {
 });
 // Read
 app.get("/Olympia/:number", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   const number = req.params.number;
   const detail = OlympiaChampion[ number ];
   res.render('Olympia_detail', {data: detail} );
 });
 // Delete
 app.get("/Olympia/delete/:number", (req, res) => {
-  // 本来は削除の確認ページを表示する
-  // 本来は削除する番号が存在するか厳重にチェックする
-  // 本来ならここにDBとのやり取りが入る
   OlympiaChampion.splice( req.params.number, 1 );
   res.redirect('/Olympia' );
 });
 // Create
 app.post("/Olympia_new", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   let new_id = 1;
   new_id = nijisanji_seeds[nijisanji_seeds.length - 1].id + 1;
   const year = req.body.year;
@@ -355,15 +334,12 @@ app.post("/Olympia_new", (req, res) => {
 });
 // Edit
 app.get("/Olympia/edit/:number", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   const number = req.params.number;
   const detail = OlympiaChampion[ number ];
   res.render('Olympia_edit', {id: number, data: detail} );
 });
 // Update
 app.post("/Olympia/update/:number", (req, res) => {
-  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
-  // 本来ならここにDBとのやり取りが入る
   OlympiaChampion[req.params.number].year = req.body.year;
   OlympiaChampion[req.params.number].name = req.body.name;
   OlympiaChampion[req.params.number].from = req.body.from;
@@ -382,22 +358,18 @@ app.get("/ac6/create", (req, res) => {
 });
 // Read
 app.get("/ac6/:number", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   const number = req.params.number;
   const detail = AC[ number ];
   res.render('ac6_detail', {data: detail} );
 });
 // Delete
 app.get("/ac6/delete/:number", (req, res) => {
-  // 本来は削除の確認ページを表示する
-  // 本来は削除する番号が存在するか厳重にチェックする
-  // 本来ならここにDBとのやり取りが入る
+
   AC.splice( req.params.number, 1 );
   res.redirect('/ac6' );
 });
 // Create
 app.post("/ac6_new", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   let new_id = 1;
   new_id = AC[AC.length - 1].id + 1;
   const year = req.body.year;
@@ -411,15 +383,12 @@ app.post("/ac6_new", (req, res) => {
 });
 // Edit
 app.get("/ac6/edit/:number", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   const number = req.params.number;
   const detail = AC[ number ];
   res.render('ac6_edit', {id: number, data: detail} );
 });
 // Update
 app.post("/ac6/update/:number", (req, res) => {
-  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
-  // 本来ならここにDBとのやり取りが入る
   AC[req.params.number].ac_name = req.body.ac_name;
   AC[req.params.number].name = req.body.name;
   AC[req.params.number].rank = req.body.rank;
