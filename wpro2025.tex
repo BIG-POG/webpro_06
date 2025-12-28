@@ -53,15 +53,15 @@
 \section{Github上のリポジトリのURL}
 \url{https://github.com/BIG-POG/webpro_06}
 \section{開発者向け仕様書}
-\subsection{にじさんじSEEd'sメンバー一覧}
+\subsection{にじさんじSEEDsメンバー一覧}
 \subsubsection{概要}
-本システムではVTuder事務所であるにじさんじの元SEEd's一期生の情報を管理し，
+本システムではVTuber事務所であるにじさんじの元SEEDs一期生の情報を管理し，
 REST APIの原則に従って，データの一覧，詳細表示，追加，変更，削除の5つの操作を提供するシステムである．
 \subsubsection{データ構造}
 データ構造は以下の表\ref{1-1}のようになる．
 \begin{table}[H]
 \centering
-\caption{にじさんじSEEd'sメンバーのデータ構造}
+\caption{にじさんじSEEDsメンバーのデータ構造}
 \begin{tabular}{|c|c|c|}
 \hline
 項目 & データ型 & 説明 \\\hline
@@ -83,17 +83,17 @@ idは各メンバーを一意に識別するためのものであり，データ
 \begin{figure}[H]
 \centering
 \includegraphics[width=8cm]{fig/nijisanji.png}
-\caption{にじさんじSEEd'sメンバーページ遷移図}
+\caption{にじさんじSEEDsメンバーページ遷移図}
 \label{fig:1-1}
 \end{figure}
-図\ref{fig:1-1}に示すように，トップページからにじさんじSEEd'sメンバー一覧ページへ遷移し，そこから各メンバーの詳細ページへ遷移できる．
+図\ref{fig:1-1}に示すように，トップページからにじさんじSEEDsメンバー一覧ページへ遷移し，そこから各メンバーの詳細ページへ遷移できる．
 詳細ページからは編集ページへ遷移でき，編集ページでデータを更新した後，一覧ページへ戻ることができる．また，詳細ページからメンバーの削除も可能であり，削除後は一覧ページへ戻る．
 そして，メンバー一覧ページから新規メンバー登録ページへ遷移できる．\par
 \subsubsection{リソースの説明}
 本システムで使用する各ページのリソースのHTTPメソッドとリソース名は以下の表\ref{1-2}に示す．
 \begin{table}[H]
 \centering
-\caption{にじさんじSEEd'sメンバーリソース一覧}
+\caption{にじさんじSEEDsメンバーリソース一覧}
 \begin{tabular}{|c|c|}
 \hline
 HTTPメソッド & リソース名 \\\hline
@@ -106,7 +106,7 @@ HTTPメソッド & リソース名 \\\hline
 \texttt{post}& \texttt{/nijisanji/update/:number} \\
 \hline
 \end{tabular}
-\caption{にじさんじSEEd'sメンバーリソース一覧}
+\caption{にじさんじSEEDsメンバーリソース一覧}
 \label{1-2}
 \end{table}
 表\ref{1-2}に示すように，各リソースはHTTPメソッドとリソース名で構成されている．
@@ -321,7 +321,7 @@ HTTPメソッド & リソース名 \\\hline
 
 \section{利用者向け仕様書}
 \subsection{システムの概要}
-本システムは，VTuder事務所であるにじさんじの元SEEd's一期生の情報を管理し，一覧表示，詳細表示，追加，変更，削除の5つの操作を提供するシステムである．
+本システムは，VTuder事務所であるにじさんじの元SEEDs一期生の情報を管理し，一覧表示，詳細表示，追加，変更，削除の5つの操作を提供するシステムである．
 
 \subsection{システムの利用方法}
 本システムの利用方法について説明する．
@@ -329,7 +329,7 @@ HTTPメソッド & リソース名 \\\hline
 \begin{figure}[H]
 \centering
 \includegraphics[width=5cm]{fig/nijisanji1.png}
-\caption{にじさんじSEEd'sメンバー一覧ページ}
+\caption{にじさんじSEEDsメンバー一覧ページ}
 \label{fig:4-1}
 \end{figure}
 図\ref{fig:4-1}に示すように，メンバーの一覧が表示され，各メンバーの名前をクリックすることで詳細ページへ遷移できる．
@@ -337,7 +337,7 @@ HTTPメソッド & リソース名 \\\hline
 \begin{figure}[H]
 \centering
 \includegraphics[width=5cm]{fig/nijisanji2.png}
-\caption{にじさんじSEEd'sメンバー詳細ページ}
+\caption{にじさんじSEEDsメンバー詳細ページ}
 \label{fig:4-2}
 \end{figure}
 図\ref{fig:4-2}に示すように，メンバーの詳細情報が表示され，編集ボタンをクリックすることで編集ページへ遷移できる．
@@ -345,7 +345,7 @@ HTTPメソッド & リソース名 \\\hline
 \begin{figure}[H]
 \centering
 \includegraphics[width=5cm]{fig/nijisanji3.png}
-\caption{にじさんじSEEd'sメンバー編集ページ}
+\caption{にじさんじSEEDsメンバー編集ページ}
 \label{fig:4-3}
 \end{figure}
 図\ref{fig:4-3}に示すように，メンバーの情報を編集でき，更新ボタンをクリックすることで変更内容が保存され一覧ページへ戻る．
@@ -353,7 +353,7 @@ HTTPメソッド & リソース名 \\\hline
 \begin{figure}[H]
 \centering
 \includegraphics[width=5cm]{fig/nijisanji4.png}
-\caption{にじさんじSEEd'sメンバー詳細ページ（更新後）}
+\caption{にじさんじSEEDsメンバー詳細ページ（更新後）}
 \label{fig:4-4}
 \end{figure}
 図\ref{fig:4-4}に示すように，更新した内容が反映されている．
@@ -363,7 +363,7 @@ HTTPメソッド & リソース名 \\\hline
 \begin{figure}[H]
 \centering
 \includegraphics[width=5cm]{fig/nijisanji5.png}
-\caption{にじさんじSEEd'sメンバー新規登録ページ}
+\caption{にじさんじSEEDsメンバー新規登録ページ}
 \label{fig:4-5}
 \end{figure}
 図\ref{fig:4-5}に示すように，新規メンバーの情報を入力でき，登録ボタンをクリックすることで新しいメンバーが追加され一覧ページへ戻る．
@@ -371,7 +371,7 @@ HTTPメソッド & リソース名 \\\hline
 \begin{figure}[H]
 \centering
 \includegraphics[width=5cm]{fig/nijisanji6.png}
-\caption{にじさんじSEEd'sメンバー一覧ページ（追加後）}
+\caption{にじさんじSEEDsメンバー一覧ページ（追加後）}
 \label{fig:4-6}
 \end{figure}
 図\ref{fig:4-6}に示すように，追加したメンバーが一覧に表示されている．
